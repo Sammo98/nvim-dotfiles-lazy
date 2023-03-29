@@ -1,15 +1,5 @@
 return {
   {
-    'akinsho/toggleterm.nvim',
-    config = true,
-    tag = '*',
-    lazy = false,
-    keys = {
-      { '<Tab>t', '<cmd>ToggleTerm size=20 direction=horizontal<cr>', desc = 'Toggle Terminal' },
-      {'<Tab>t', '<cmd>ToggleTerm size=20 direction=horizontal<cr>', desc = 'Toggle Terminal', mode = "t" },
-      },
-  },
-  {
       'romgrk/barbar.nvim',
       dependencies = {'nvim-tree/nvim-web-devicons'},
       lazy = false,
