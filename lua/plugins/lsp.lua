@@ -19,20 +19,31 @@ return{
             -- Snippets
             {'L3MON4D3/LuaSnip'},             -- Required
             {'rafamadriz/friendly-snippets'}, -- Optional
+
+            -- Rust
+            {"simrat39/rust-tools.nvim"}
         },
 
         config = function()
             local lsp = require('lsp-zero').preset({
-                name = 'minimal',
+                name = "minimal",
                 set_lsp_keymaps = true,
                 manage_nvim_cmp = true,
-                suggest_lsp_servers = false,
-            })
+                suggest_lsp_servers = false
 
-            -- (Optional) Configure lua language server for neovim
-            lsp.nvim_workspace()
+            })
+            lsp.skip_server_setup({'rust_analyzer'})
 
             lsp.setup()
+
+            local rust_tools = require('rust-tools')
+
+            rust_tools.setup({
+                server = {
+                    on_attach = function()
+                    end
+                }
+            })
         end
 
     },
@@ -49,4 +60,4 @@ return{
         end
     }
 
-} 
+}

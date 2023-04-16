@@ -1,33 +1,54 @@
-vim.o.guicursor = "a:block"
 vim.g.mapleader = " "
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+local opt = vim.opt
 
-vim.opt.nu = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.o.guicursor = "a:block"
 
-vim.opt.smartindent = true
+opt.nu = true
 
-vim.opt.wrap = false
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.smartindent = true
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.wrap = false
 
-vim.opt.termguicolors = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.hlsearch = false
+opt.incsearch = true
 
-vim.opt.updatetime = 50
+opt.termguicolors = true
 
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
+
+opt.updatetime = 50
+
+-- clipboard
+-- allow you to yank from neovim and C-v to anywhere vice versa
+opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
+if _G.IS_WSL and vim.fn.executable('win32yank.exe') == 1 then -- you need put win32yank in system32
+  vim.g.clipboard = {
+    name = 'win32yank-wsl',
+    copy = {
+      ["+"] = { "win32yank.exe", "-i", "--crlf" },
+      ["*"] = { "win32yank.exe", "-i", "--crlf" },
+    },
+    paste = {
+      ["+"] = { "win32yank.exe", "-o", "--lf" },
+      ["*"] = { "win32yank.exe", "-o", "--lf" },
+    },
+    cache_enabled = true
+  }
+end
+
+opt.iskeyword:append("-") -- now 'test-test' is a word
+vim.wo.fillchars='eob: '
 
