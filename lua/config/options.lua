@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 local opt = vim.opt
 
+vim.wo.relativenumber = true
+
 
 vim.o.guicursor = "a:block"
 

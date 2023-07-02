@@ -13,7 +13,7 @@ return {
       require("tokyonight").setup {
         transparent = true,
       }
-      vim.cmd("colorscheme solarized")
+      vim.cmd("colorscheme tokyonight-storm")
     end
   },
 
